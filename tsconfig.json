@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
+        "paths": { "@ui/*": ["src/ui/*"] },
         "target": "es2016",
         "module": "commonjs",
         "esModuleInterop": true,
