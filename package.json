@@ -1,0 +1,25 @@
+{
+    "name": "high-quality-crud",
+    "version": "1.0.0",
+    "description": "Course on How to Build a High Quality CRUD project",
+    "main": "index.js",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "author": "Daniela Barbosa",
+    "license": "ISC",
+    "dependencies": {
+        "next": "^13.2.4",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@types/node": "^18.15.5",
+        "@types/react": "^18.0.29",
+        "nodemon": "^2.0.21",
+        "typescript": "^5.2.2"
+    }
+}
