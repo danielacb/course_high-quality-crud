@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": { "@ui/*": ["src/ui/*"] },
+    "paths": {
+      "@ui/*": ["src/ui/*"],
+      "@db-crud-todo": ["core/crud.ts"],
+      "@server/*": ["src/server/*"]
+    },
     "target": "es2016",
     "module": "commonjs",
     "esModuleInterop": true,

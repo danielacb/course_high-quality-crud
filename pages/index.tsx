@@ -1,6 +1,19 @@
+import { useEffect, useState } from "react";
 import { GlobalStyles } from "@ui/theme/GlobalStyles";
+import { todoController } from "@ui/controller/todo";
+
+interface HomeTodo {
+  id: string;
+  content: string;
+}
 
 export default function HomePage() {
+  const [todos, setTodos] = useState<HomeTodo[]>([]);
+
+  useEffect(() => {
+    todoController.get().then((todos) => setTodos(todos));
+  }, []);
+
   return (
     <main>
       <GlobalStyles themeName="devsoutinho" />
@@ -38,16 +51,18 @@ export default function HomePage() {
           </thead>
 
           <tbody>
-            <tr>
-              <td>
-                <input type="checkbox" />
-              </td>
-              <td>d4f26</td>
-              <td>Eaque vero facilisobcaecati, autem aliquid eius!</td>
-              <td align="right">
-                <button data-type="delete">Delete</button>
-              </td>
-            </tr>
+            {todos.map((todo) => (
+              <tr key={todo.id}>
+                <td>
+                  <input type="checkbox" />
+                </td>
+                <td>{todo.id}</td>
+                <td>{todo.content}</td>
+                <td align="right">
+                  <button data-type="delete">Delete</button>
+                </td>
+              </tr>
+            ))}
 
             <tr>
               <td colSpan={4} align="center" style={{ textAlign: "center" }}>
