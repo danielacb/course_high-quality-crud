@@ -8,11 +8,18 @@ interface HomeTodo {
 }
 
 export default function HomePage() {
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [todos, setTodos] = useState<HomeTodo[]>([]);
 
+  const hasMorePages = totalPages > page;
+
   useEffect(() => {
-    todoController.get().then((todos) => setTodos(todos));
-  }, []);
+    todoController.get({ page }).then(({ todos, pages }) => {
+      setTodos((oldTodos) => [...oldTodos, ...todos]);
+      setTotalPages(pages);
+    });
+  }, [page]);
 
   return (
     <main>
@@ -76,22 +83,29 @@ export default function HomePage() {
               </td>
             </tr>
 
-            <tr>
-              <td colSpan={4} align="center" style={{ textAlign: "center" }}>
-                <button data-type="load-more">
-                  Load more{" "}
-                  <span
-                    style={{
-                      display: "inline-block",
-                      marginLeft: "4px",
-                      fontSize: "1.2em",
-                    }}
+            {hasMorePages && (
+              <tr>
+                <td colSpan={4} align="center" style={{ textAlign: "center" }}>
+                  Page: {page}
+                  <button
+                    data-type="load-more"
+                    onClick={() => setPage(page + 1)}
+                    style={{ marginLeft: "16px" }}
                   >
-                    ↓
-                  </span>
-                </button>
-              </td>
-            </tr>
+                    Load more{" "}
+                    <span
+                      style={{
+                        display: "inline-block",
+                        marginLeft: "4px",
+                        fontSize: "1.2em",
+                      }}
+                    >
+                      ↓
+                    </span>
+                  </button>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </section>
