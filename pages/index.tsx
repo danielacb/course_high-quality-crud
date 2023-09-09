@@ -9,13 +9,18 @@ interface HomeTodo {
 
 export default function HomePage() {
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
   const [totalPages, setTotalPages] = useState(0);
-  const [todos, setTodos] = useState<HomeTodo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [todos, setTodos] = useState<HomeTodo[]>([]);
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
   const hasMorePages = totalPages > page;
-  const hasNoTodos = !isLoading && todos.length === 0;
+  const homeTodos = todoController.filterTodosByContent<HomeTodo>(
+    search,
+    todos,
+  );
+  const hasNoTodos = !isLoading && homeTodos.length === 0;
 
   useEffect(() => {
     setInitialLoadComplete(true);
@@ -51,7 +56,12 @@ export default function HomePage() {
 
       <section>
         <form>
-          <input type="text" placeholder="Filter list, ex: Dentist" />
+          <input
+            type="text"
+            placeholder="Filter list, ex: Dentist"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+          />
         </form>
 
         <table border={1}>
@@ -67,7 +77,7 @@ export default function HomePage() {
           </thead>
 
           <tbody>
-            {todos.map((todo) => (
+            {homeTodos.map((todo) => (
               <tr key={todo.id}>
                 <td>
                   <input type="checkbox" />
