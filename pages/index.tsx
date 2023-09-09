@@ -11,15 +11,24 @@ export default function HomePage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [todos, setTodos] = useState<HomeTodo[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
   const hasMorePages = totalPages > page;
+  const hasNoTodos = !isLoading && todos.length === 0;
 
   useEffect(() => {
-    todoController.get({ page }).then(({ todos, pages }) => {
-      setTodos((oldTodos) => [...oldTodos, ...todos]);
-      setTotalPages(pages);
-    });
-  }, [page]);
+    setInitialLoadComplete(true);
+    if (!initialLoadComplete) {
+      todoController
+        .get({ page })
+        .then(({ todos, pages }) => {
+          setTodos(todos);
+          setTotalPages(pages);
+        })
+        .finally(() => setIsLoading(false));
+    }
+  }, []);
 
   return (
     <main>
@@ -71,17 +80,21 @@ export default function HomePage() {
               </tr>
             ))}
 
-            <tr>
-              <td colSpan={4} align="center" style={{ textAlign: "center" }}>
-                Loading...
-              </td>
-            </tr>
+            {isLoading && (
+              <tr>
+                <td colSpan={4} align="center" style={{ textAlign: "center" }}>
+                  Loading...
+                </td>
+              </tr>
+            )}
 
-            <tr>
-              <td colSpan={4} align="center">
-                No items found
-              </td>
-            </tr>
+            {hasNoTodos && (
+              <tr>
+                <td colSpan={4} align="center">
+                  No items found
+                </td>
+              </tr>
+            )}
 
             {hasMorePages && (
               <tr>
@@ -89,7 +102,18 @@ export default function HomePage() {
                   Page: {page}
                   <button
                     data-type="load-more"
-                    onClick={() => setPage(page + 1)}
+                    onClick={() => {
+                      setIsLoading(true);
+                      const nextPage = page + 1;
+                      setPage(nextPage);
+                      todoController
+                        .get({ page: nextPage })
+                        .then(({ todos, pages }) => {
+                          setTodos((oldTodos) => [...oldTodos, ...todos]);
+                          setTotalPages(pages);
+                        })
+                        .finally(() => setIsLoading(false));
+                    }}
                     style={{ marginLeft: "16px" }}
                   >
                     Load more{" "}
