@@ -1,4 +1,4 @@
-import { read } from "@db-crud-todo";
+import { read, create } from "@db-crud-todo";
 
 interface Todo {
   id: string;
@@ -16,6 +16,7 @@ interface TodoRepositoryGetOutput {
   total: number;
   pages: number;
 }
+
 function get({
   page = 1,
   limit = 10,
@@ -34,6 +35,11 @@ function get({
   };
 }
 
+async function createdByContent(content: string): Promise<Todo> {
+  return create(content);
+}
+
 export const todoRepository = {
   get,
+  createdByContent,
 };
