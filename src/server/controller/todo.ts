@@ -50,7 +50,7 @@ async function create(req: NextApiRequest, res: NextApiResponse) {
     return;
   }
 
-  const createdTodo = await todoRepository.createdByContent(body.data.content);
+  const createdTodo = await todoRepository.createByContent(body.data.content);
 
   res.status(201).json({
     todo: createdTodo,

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { GlobalStyles } from "@ui/theme/GlobalStyles";
 import { todoController } from "@ui/controller/todo";
 
@@ -14,6 +14,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [todos, setTodos] = useState<HomeTodo[]>([]);
   const initialLoadComplete = useRef(false);
+  const [newTodoContent, setNewTodoContent] = useState("");
 
   const hasMorePages = totalPages > page;
   const homeTodos = todoController.filterTodosByContent<HomeTodo>(
@@ -37,6 +38,22 @@ export default function HomePage() {
     }
   }, []);
 
+  function createNewTodo(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    todoController.create({
+      content: newTodoContent,
+      onSuccess(todo: HomeTodo) {
+        setTodos((oldTodos) => {
+          return [todo, ...oldTodos];
+        });
+        setNewTodoContent("");
+      },
+      onError(customMessage) {
+        alert(customMessage || "A todo needs to have content!");
+      },
+    });
+  }
+
   return (
     <main>
       <GlobalStyles themeName="devsoutinho" />
@@ -48,8 +65,13 @@ export default function HomePage() {
         <div className="typewriter">
           <h1>What&apos;s the plan for today?</h1>
         </div>
-        <form>
-          <input type="text" placeholder="Run, study..." />
+        <form onSubmit={(event) => createNewTodo(event)}>
+          <input
+            type="text"
+            value={newTodoContent}
+            placeholder="Run, study..."
+            onChange={(event) => setNewTodoContent(event.target.value)}
+          />
           <button type="submit" aria-label="Add new item">
             +
           </button>
@@ -57,7 +79,7 @@ export default function HomePage() {
       </header>
 
       <section>
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
             placeholder="Filter list, ex: Dentist"
