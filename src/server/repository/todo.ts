@@ -12,15 +12,18 @@ interface TodoRepositoryGetOutput {
 }
 
 function get({
-  page = 1,
-  limit = 10,
+  page,
+  limit,
 }: TodoRepositoryGetParams = {}): TodoRepositoryGetOutput {
+  const currentPage = page || 1;
+  const currentLimit = limit || 10;
+
   const ALL_TODOS = read().reverse();
 
-  const startIndex = (page - 1) * limit;
-  const endIndex = page * limit;
+  const startIndex = (currentPage - 1) * currentLimit;
+  const endIndex = currentPage * currentLimit;
   const paginatedTodos = ALL_TODOS.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(ALL_TODOS.length / limit);
+  const totalPages = Math.ceil(ALL_TODOS.length / currentLimit);
 
   return {
     total: ALL_TODOS.length,
