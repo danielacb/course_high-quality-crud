@@ -5,6 +5,7 @@ import { todoController } from "@ui/controller/todo";
 interface HomeTodo {
   id: string;
   content: string;
+  done: boolean;
 }
 
 export default function HomePage() {
@@ -52,6 +53,20 @@ export default function HomePage() {
         alert(customMessage || "A todo needs to have content!");
       },
     });
+  }
+
+  function updateTodoDoneOnScreen(todoId: string) {
+    setTodos((currentTodos) =>
+      currentTodos.map((curretnTodo) => {
+        if (curretnTodo.id === todoId) {
+          return {
+            ...curretnTodo,
+            done: !curretnTodo.done,
+          };
+        }
+        return curretnTodo;
+      }),
+    );
   }
 
   return (
@@ -104,10 +119,25 @@ export default function HomePage() {
             {homeTodos.map((todo) => (
               <tr key={todo.id}>
                 <td>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    checked={todo.done}
+                    onChange={() =>
+                      todoController.toggleDone({
+                        todoId: todo.id,
+                        updateTodoDoneOnScreen,
+                        onError(customMessage) {
+                          alert(
+                            customMessage ||
+                              "Error when updating the todo done status",
+                          );
+                        },
+                      })
+                    }
+                  />
                 </td>
-                <td>{todo.id}</td>
-                <td>{todo.content}</td>
+                <td>{todo.id.substring(0, 4)}</td>
+                <td>{todo.done ? <s>{todo.content}</s> : todo.content}</td>
                 <td align="right">
                   <button data-type="delete">Delete</button>
                 </td>

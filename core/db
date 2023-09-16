@@ -40,13 +40,13 @@
       "id": "8d1b4ce1-dadc-4496-bfea-760e19c99ceb",
       "date": "2023-09-13T23:38:03.148Z",
       "content": "test do tédio",
-      "done": false
+      "done": true
     },
     {
       "id": "1a003240-6672-4cbe-91d5-5f3fdc40ea18",
       "date": "2023-09-13T23:44:51.229Z",
       "content": "test enter",
-      "done": false
+      "done": true
     },
     {
       "id": "174ad3bd-88c2-4c36-ade0-d31bf08e3995",
@@ -70,7 +70,7 @@
       "id": "9c94932a-d1d2-4b9d-b1af-47b9402be19a",
       "date": "2023-09-13T23:50:18.338Z",
       "content": "12324213",
-      "done": false
+      "done": true
     }
   ]
 }
