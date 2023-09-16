@@ -64,7 +64,7 @@
       "id": "f22d5077-5901-47ea-b0fb-52827c52454a",
       "date": "2023-09-13T23:46:49.879Z",
       "content": "akdksad ",
-      "done": false
+      "done": true
     },
     {
       "id": "9c94932a-d1d2-4b9d-b1af-47b9402be19a",
@@ -72,6 +72,5 @@
       "content": "12324213",
       "done": false
     }
-  ],
-  "dogs": []
+  ]
 }
