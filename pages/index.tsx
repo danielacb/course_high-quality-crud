@@ -69,6 +69,19 @@ export default function HomePage() {
     );
   }
 
+  function handleDelete(todoId: string) {
+    todoController
+      .deleteById(todoId)
+      .then(() =>
+        setTodos((currentTodos) =>
+          currentTodos.filter((todo) => todo.id !== todoId),
+        ),
+      )
+      .catch(() => {
+        console.error("Failed to delete!");
+      });
+  }
+
   return (
     <main>
       <GlobalStyles themeName="devsoutinho" />
@@ -139,7 +152,12 @@ export default function HomePage() {
                 <td>{todo.id.substring(0, 4)}</td>
                 <td>{todo.done ? <s>{todo.content}</s> : todo.content}</td>
                 <td align="right">
-                  <button data-type="delete">Delete</button>
+                  <button
+                    data-type="delete"
+                    onClick={() => handleDelete(todo.id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

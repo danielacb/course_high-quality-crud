@@ -66,9 +66,20 @@ function toggleDone({
     .catch(() => onError());
 }
 
+async function deleteById(todoId: string): Promise<void> {
+  try {
+    await todoRepository.deleteById(todoId);
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`error: ${error.message}`);
+    }
+  }
+}
+
 export const todoController = {
   get,
   filterTodosByContent,
   create,
   toggleDone,
+  deleteById,
 };
