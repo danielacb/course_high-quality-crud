@@ -8,7 +8,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint './**/*.{js,jsx,ts,tsx}'",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test": "start-server-and-test dev http://localhost:3000 cy:run"
   },
   "author": "Daniela Barbosa",
   "license": "ISC",
@@ -25,8 +28,11 @@
     "@types/uuid": "^9.0.3",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "@typescript-eslint/parser": "^6.5.0",
+    "cypress": "^13.2.0",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-chai-friendly": "^0.7.2",
+    "eslint-plugin-cypress": "^2.14.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-n": "^16.0.2",
     "eslint-plugin-prettier": "^5.0.0",
@@ -36,6 +42,7 @@
     "nodemon": "^2.0.21",
     "npm": "^10.0.0",
     "prettier": "3.0.3",
+    "start-server-and-test": "^2.0.0",
     "typescript": "^5.2.2"
   }
 }

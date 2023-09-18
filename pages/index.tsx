@@ -96,6 +96,7 @@ export default function HomePage() {
         <form onSubmit={(event) => createNewTodo(event)}>
           <input
             type="text"
+            name="add-todo"
             value={newTodoContent}
             placeholder="Run, study..."
             onChange={(event) => setNewTodoContent(event.target.value)}

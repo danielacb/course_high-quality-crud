@@ -2,13 +2,15 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "cypress/globals": true
   },
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:cypress/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -21,7 +23,13 @@
     }
   },
   "ignorePatterns": ["node_modules/"],
-  "plugins": ["@typescript-eslint", "react", "prettier"],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "prettier",
+    "cypress",
+    "chai-friendly"
+  ],
   "rules": {
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "react/react-in-jsx-scope": "off",
