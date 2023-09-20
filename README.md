@@ -2,9 +2,11 @@
 
 <a href="https://dcb-high-quality-crud.vercel.app/">
   <p align="center">
-     <img alt="High Quality Crud" src="https://github.com/danielacb/course_high-quality-crud/assets/18037904/5e5e1f0e-6d17-4d82-b1e0-f89474f802e3" width="100%">
+     <img alt="High Quality Crud" src="https://github.com/danielacb/course_high-quality-crud/assets/18037904/96229cc1-dfe2-4a2e-92f7-48c90311373b" width="100%">
   </p>
 </a>
+
+
 
 <div align="center">
    
@@ -28,7 +30,7 @@ This project revolves around the fundamental Create, Read, Update, and Delete (C
 
 <a href="https://dcb-high-quality-crud.vercel.app/" target="_blank">
    <p align="center">
-      <img width="229" alt="High Quality Crud" src="https://github.com/danielacb/course_high-quality-crud/assets/18037904/9bc2d5df-3886-41fd-8c3f-4e0d006f7013">
+      <img width="229" alt="btn" src="https://github.com/danielacb/course_high-quality-crud/assets/18037904/c862c0a2-6f41-48bf-9ed4-9ed224f75896">
    </p>
 </a>
 <a href="https://crudcomqualidade.io/" target="_blank">
@@ -49,7 +51,7 @@ Recommended versions: node `v16.18.1` and npm `8.19.2`
    
     1.2 Create a new table with the following configuration:
 
-    <img width="658" alt="Supabase todos table configuration" src="https://github.com/danielacb/course_high-quality-crud/assets/18037904/7579c727-ff01-4ab9-9a10-9a3ff0ed55a0">
+    <img width="659" alt="Supabase TODOs table" src="https://github.com/danielacb/course_high-quality-crud/assets/18037904/aeb50b56-3bbe-4aba-9453-e57130ce974d">
 
     _(content is the only required field)_
 
