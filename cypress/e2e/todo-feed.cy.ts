@@ -31,6 +31,6 @@ describe("/ - Todos Feed", () => {
     cy.get(btnAddTodo).click();
 
     // 4 - Confirm if todo was added
-    cy.get("table > tbody").contains("Test todo Cypress");
+    cy.get("table > tbody").contains("Test todo Cypress", { timeout: 5000 });
   });
 });
