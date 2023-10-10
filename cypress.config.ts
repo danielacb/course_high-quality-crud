@@ -2,6 +2,8 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   e2e: {
-    video: false,
+    video: true,
+    videoCompression: 32,
+    videosFolder: "cypress/videos",
   },
 });
